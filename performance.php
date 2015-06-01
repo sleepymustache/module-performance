@@ -16,7 +16,11 @@ function start_timer() {
  * @internal
  */
 function stop_timer() {
-	$stop_timer = microtime(true) - STARTTIME;
+	if (!defined('STARTTIME')) {
+		return false;
+	}
+
+	$stop_timer = microtime(true) - @STARTTIME;
 	echo "\n<!-- Generated in $stop_timer seconds using " .
 		(memory_get_peak_usage() / 1024) .
 		" kb memory, by sleepyMUSTACHE -->";
