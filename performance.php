@@ -26,5 +26,9 @@ function stop_timer() {
 		" kb memory, by sleepyMUSTACHE -->";
 }
 
-\Sleepy\Hook::doAction('sleepy_preprocess',  '\Module\Performance\start_timer');
-\Sleepy\Hook::doAction('sleepy_postprocess', '\Module\Performance\stop_timer');
+if (\Sleepy\SM::isDev()) {
+	\Sleepy\Hook::doAction('sleepy_preprocess',  '\Module\Performance\start_timer');
+	\Sleepy\Hook::doAction('sleepy_postprocess', '\Module\Performance\stop_timer');
+}
+
+
