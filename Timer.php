@@ -33,21 +33,16 @@ class Timer extends Module
      * Define the hook points
      */
     public $hooks = [
-        'timer_preprocess'   => 'setup',
         'sleepy_preprocess'  => 'startTimer',
         'sleepy_postprocess' => 'stopTimer'
     ];
 
-    /**
-     * Setup the Environment settings
-     *
-     * @return void
-     */
-    public function setup()
-    {
-        // Disable this module for stage and live
+    public function __construct() {
+        $this->environments['dev']   = true;
         $this->environments['stage'] = false;
         $this->environments['live']  = false;
+
+        parent::__construct();
     }
 
     /**
