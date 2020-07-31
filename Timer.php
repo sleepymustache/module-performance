@@ -13,7 +13,7 @@
  * @link     http://sleepymustache.com
  */
 
-namespace Module\Perforance;
+namespace Module\Performance;
 
 use Sleepy\Core\Hook;
 use Sleepy\Core\Module;
@@ -29,7 +29,9 @@ use Sleepy\Core\Module;
  */
 class Timer extends Module
 {
-
+    /**
+     * Define the hook points
+     */
     public $hooks = [
         'timer_preprocess'   => 'setup',
         'sleepy_preprocess'  => 'startTimer',
@@ -43,6 +45,7 @@ class Timer extends Module
      */
     public function setup()
     {
+        // Disable this module for stage and live
         $this->environments['stage'] = false;
         $this->environments['live']  = false;
     }
@@ -68,7 +71,7 @@ class Timer extends Module
         echo "\n<!-- Generated in $this->stopTimer seconds using " .
             (memory_get_peak_usage() / 1024) .
             " kb memory, by sleepyMUSTACHE -->";
-    }
+    } 
 }
 
 Hook::register(new Timer());
