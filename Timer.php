@@ -1,6 +1,6 @@
 <?php
 /**
- * The Timer class used in ther Performance Module to display the execution time and
+ * The Timer class used in the Performance Module to display the execution time and
  * memory usage
  *
  * PHP version 7.0.0
@@ -42,6 +42,7 @@ class Timer extends Module
         $this->environments['stage'] = false;
         $this->environments['live']  = false;
 
+        // The parent contructor must be called
         parent::__construct();
     }
 
