@@ -37,6 +37,20 @@ class Timer extends Module
         'sleepy_postprocess' => 'stopTimer'
     ];
 
+    /**
+     * The time (from microtime()) at which startTimer() ran
+     *
+     * @var float
+     */
+    private $startTime;
+
+    /**
+     * The elapsed time, in seconds, measured by stopTimer()
+     *
+     * @var float
+     */
+    private $elapsed;
+
     public function __construct() {
         $this->environments['dev']   = true;
         $this->environments['stage'] = false;
@@ -63,11 +77,11 @@ class Timer extends Module
      */
     public function stopTimer()
     {
-        $this->stopTimer = microtime(true) - $this->startTime;
-        echo "\n<!-- Generated in $this->stopTimer seconds using " .
+        $this->elapsed = microtime(true) - $this->startTime;
+        echo "\n<!-- Generated in {$this->elapsed} seconds using " .
             (memory_get_peak_usage() / 1024) .
             " kb memory, by sleepyMUSTACHE -->";
-    } 
+    }
 }
 
 Hook::register(new Timer());
